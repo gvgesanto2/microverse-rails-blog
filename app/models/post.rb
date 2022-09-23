@@ -9,8 +9,7 @@ class Post < ApplicationRecord
   after_save :update_posts_counter
 
   def get_most_recent_comments(num = nil)
-    recent_comments = comments.most_recent_ones
-    num ? recent_comments.limit(num) : recent_comments
+    comments.most_recent_ones.limit(num)
   end
 
   private

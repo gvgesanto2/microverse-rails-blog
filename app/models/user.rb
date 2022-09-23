@@ -4,7 +4,6 @@ class User < ApplicationRecord
   has_many :likes, foreign_key: 'author_id'
 
   def get_most_recent_posts(num = nil)
-    recent_posts = posts.most_recent_ones
-    num ? recent_posts.limit(num) : recent_posts
+    posts.most_recent_ones.limit(num)
   end
 end
