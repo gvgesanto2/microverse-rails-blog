@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :likes
 
-  scope :by_author, -> (author_id) { where(author_id: author_id) }
+  scope :by_author, ->(author_id) { where(author_id:) }
   scope :most_recent_ones, -> { order('created_at DESC') }
 
   after_save :update_posts_counter
