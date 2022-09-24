@@ -5,20 +5,20 @@ RSpec.describe User, type: :model do
 
   before { subject.save }
 
-  it 'should be valid with valid attributes' do    
+  it 'should be valid with valid attributes' do
     expect(subject).to be_valid
   end
 
-  it 'should NOT be valid without a name' do 
+  it 'should NOT be valid without a name' do
     subject.name = nil
     expect(subject).to_not be_valid
   end
 
-  it 'posts_counter should be initially set to zero' do    
+  it 'posts_counter should be initially set to zero' do
     expect(subject.posts_counter).to be(0)
   end
 
-  it 'should NOT be valid with a non-integer posts_counter' do 
+  it 'should NOT be valid with a non-integer posts_counter' do
     subject.posts_counter = 1.5
     expect(subject).to_not be_valid
 
@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
     expect(subject).to_not be_valid
   end
 
-  it 'should NOT be valid with a posts_counter less than zero' do 
+  it 'should NOT be valid with a posts_counter less than zero' do
     subject.posts_counter = -1
     expect(subject).to_not be_valid
   end
@@ -37,18 +37,18 @@ RSpec.describe User, type: :model do
   end
 
   it 'get_most_recent_posts should return the most recent posts created by the user' do
-    NUM_POSTS_CREATED = 5
-    NUM_RECENT_POSTS = 3
+    num_posts_created = 5
+    num_recent_posts = 3
     posts_created = []
 
-    NUM_POSTS_CREATED.times do
+    num_posts_created.times do
       posts_created << Post.create(title: 'testing', author: subject, text: 'testing')
     end
 
-    expect(subject.get_most_recent_posts.length).to be(NUM_POSTS_CREATED)
+    expect(subject.get_most_recent_posts.length).to be(num_posts_created)
 
-    recent_posts = posts_created[NUM_RECENT_POSTS - 1..-1].reverse
+    recent_posts = posts_created[num_recent_posts - 1..].reverse
 
-    expect(subject.get_most_recent_posts(NUM_RECENT_POSTS)).to eq(recent_posts)
+    expect(subject.get_most_recent_posts(num_recent_posts)).to eq(recent_posts)
   end
 end
