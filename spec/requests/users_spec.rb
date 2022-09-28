@@ -1,11 +1,20 @@
 require 'rails_helper'
 
-FAKE_ID ||= '1'
+FAKE_USER_ID ||= '1'
 FAKE_USER ||= 'fake user'
+FAKE_ALL_USERS ||= 'all users'
 
 RSpec.describe 'Users', type: :request do
   describe 'GET /users' do
-    before(:each) { get '/users' }
+    before(:each) do 
+      allow(User).to receive(:all) { FAKE_ALL_USERS }
+      get '/users' 
+    end
+
+    it 'should assign all the users to @users' do
+      expect(User).to have_received(:all)
+      expect(assigns(:users)).to eq(FAKE_ALL_USERS)
+    end
 
     it 'returns an http success response' do
       expect(response).to have_http_status(:success)
@@ -23,11 +32,11 @@ RSpec.describe 'Users', type: :request do
   describe 'GET /users/:user_id' do
     before(:each) do
       allow(User).to receive(:find) { FAKE_USER }
-      get "/users/#{FAKE_ID}"
+      get "/users/#{FAKE_USER_ID}"
     end
 
     it 'should assign the correct user to @user' do
-      expect(User).to have_received(:find).with(FAKE_ID)
+      expect(User).to have_received(:find).with(FAKE_USER_ID)
       expect(assigns(:user)).to eq(FAKE_USER)
     end
 
