@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-FAKE_USER_ID ||= '1'
-FAKE_USER ||= 'fake user'
-FAKE_ALL_USERS ||= 'all users'
+FAKE_USER_ID ||= '1'.freeze
+FAKE_USER ||= 'fake user'.freeze
+FAKE_ALL_USERS ||= 'all users'.freeze
 
 RSpec.describe 'Users', type: :request do
   describe 'GET /users' do
-    before(:each) do 
+    before(:each) do
       allow(User).to receive(:all) { FAKE_ALL_USERS }
-      get '/users' 
+      get '/users'
     end
 
     it 'should assign all the users to @users' do

@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-FAKE_USER_ID ||= '1'
-FAKE_POST_ID ||= '2'
-FAKE_POST ||= 'fake post'
-FAKE_ALL_USER_POSTS ||= 'all user posts'
+FAKE_USER_ID ||= '1'.freeze
+FAKE_POST_ID ||= '2'.freeze
+FAKE_POST ||= 'fake post'.freeze
+FAKE_ALL_USER_POSTS ||= 'all user posts'.freeze
 
 RSpec.describe 'Posts', type: :request do
   describe 'GET /users/:user_id/posts' do
-    before(:each) do 
+    before(:each) do
       allow(Post).to receive(:by_author) { FAKE_ALL_USER_POSTS }
       get "/users/#{FAKE_USER_ID}/posts"
     end
