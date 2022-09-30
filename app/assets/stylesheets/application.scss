@@ -8,7 +8,12 @@
 
 // Import components styles 
 @import 'components/c-header';
+@import 'components/c-user-card';
+@import 'components/c-vertical-list';
 
 // Import layout styles 
 @import 'layout/l-container';
+
+// Import pages styles 
+@import 'pages/home/p-users';
 
