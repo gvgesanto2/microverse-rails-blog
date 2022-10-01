@@ -2,11 +2,11 @@
 @import 'abstracts/variables';
 @import 'abstracts/mixins';
 
-// Import reset and base styles 
+// Import reset and base styles
 @import 'base/reset';
 @import 'base/base';
 
-// Import components styles 
+// Import components styles
 @import 'components/c-header';
 @import 'components/c-user-card';
 @import 'components/c-vertical-list';
@@ -22,10 +22,10 @@
 @import 'components/c-comments-preview';
 @import 'components/c-post';
 
-// Import layout styles 
+// Import layout styles
 @import 'layout/l-container';
 
-// Import pages styles 
+// Import pages styles
 @import 'pages/home/p-users';
 @import 'pages/user/p-user-profile';
 @import 'pages/p-post';
