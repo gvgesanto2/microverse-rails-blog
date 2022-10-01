@@ -1,30 +1,23 @@
-<section class="p-post">
-  <article class="c-post c-card">
-    <header class="c-post__header">
-      <h3 class="c-post__title">
-        <%= @post.title %>
-      </h3>
-      <span class="c-post__author">
-        by <%= @post.author.name %>
-      </span>
-    </header>
-      
-  <p class="c-post__text">
-    <%= @post.text %>
+<%= link_to route, class: "c-post-item" do %>
+  <h3 class="c-post-item__title">
+    <%= post.title %>
+  </h3>
+  <p class="c-post-item__text">
+    <%= post.text[0..100] %>...
   </p>
-  <div class="c-post__info">
-    <span class="c-post__likes">
-      <%= @post.likes_counter %> likes
+  <div class="c-post-item__info">
+    <span class="c-post-item__likes">
+      <%= post.likes_counter %> likes
     </span>
-    <span class="c-post__likes">
-      <%= @post.comments_counter %> comments
+    <span class="c-post-item__likes">
+      <%= post.comments_counter %> comments
     </span>
   </div>
 
-  <% if @post.get_most_recent_comments.length > 0 %>
+  <% if comments.length > 0 %>
     <div class="c-comments-preview">
       <ul class="c-comments-preview__list">
-        <% @post.get_most_recent_comments.each do |comment| %>
+        <% comments.each do |comment| %>
           <li>
             <article class="c-comment-item">
               <img 
@@ -51,5 +44,4 @@
       </ul>
     </div>
   <% end %> 
-  </article>
-</section>
+<% end %> 

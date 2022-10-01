@@ -1,1 +1,16 @@
-<h1>Here is the profile of a specific user</h1>
+<section class="p-user-profile">
+  <%= render "components/user_header", user: @user %>
+
+  <div class="p-user-profile__content">
+    <%= render "components/user_bio", bio: @user.bio %>
+
+    <% if @user.get_most_recent_posts.length.zero? %>
+      <div class="c-card">
+        <p>No posts created.</p>
+      </div>
+    <% else %>
+       <%= render "components/posts_preview", user: @user %>
+    <% end %>
+  </div>
+
+</section>

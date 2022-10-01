@@ -1,0 +1,23 @@
+.c-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--color-white);
+  z-index: 100;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--main-container-max-width);
+    height: 100%;
+    padding: 0 2.4rem;
+    margin: 0 auto;
+  }
+
+  &__logo {
+    font-size: 2rem;
+  }
+}
