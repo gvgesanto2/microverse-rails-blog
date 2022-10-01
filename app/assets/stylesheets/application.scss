@@ -16,7 +16,10 @@
 @import 'components/c-card';
 @import 'components/c-user-bio';
 @import 'components/c-posts-preview';
-@import 'components/c-posts-preview-item';
+@import 'components/c-post-item';
+@import 'components/c-posts-list';
+@import 'components/c-comment-item';
+@import 'components/c-comments-preview';
 
 // Import layout styles 
 @import 'layout/l-container';

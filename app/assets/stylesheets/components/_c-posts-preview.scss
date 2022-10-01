@@ -22,5 +22,10 @@
 
   &__btn {
     padding: 2rem 1.6rem;
+    transition: all 0.2s;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
