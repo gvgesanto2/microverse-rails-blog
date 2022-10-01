@@ -20,6 +20,7 @@
 @import 'components/c-posts-list';
 @import 'components/c-comment-item';
 @import 'components/c-comments-preview';
+@import 'components/c-post';
 
 // Import layout styles 
 @import 'layout/l-container';
@@ -27,3 +28,4 @@
 // Import pages styles 
 @import 'pages/home/p-users';
 @import 'pages/user/p-user-profile';
+@import 'pages/p-post';
