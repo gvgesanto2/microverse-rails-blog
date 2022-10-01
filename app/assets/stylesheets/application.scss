@@ -10,10 +10,17 @@
 @import 'components/c-header';
 @import 'components/c-user-card';
 @import 'components/c-vertical-list';
+@import 'components/c-profile-header';
+@import 'components/c-round-img';
+@import 'components/c-user-tab';
+@import 'components/c-card';
+@import 'components/c-user-bio';
+@import 'components/c-posts-preview';
+@import 'components/c-posts-preview-item';
 
 // Import layout styles 
 @import 'layout/l-container';
 
 // Import pages styles 
 @import 'pages/home/p-users';
-
+@import 'pages/user/p-user-profile';

@@ -16,9 +16,12 @@
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
   }
 
-  &__img {
-    @include roundElem(5.5rem);
-    margin-right: 1.6rem;
+  // &__img {
+  //   @include roundElem(5.5rem);
+  // }
+
+  &__content {
+    margin-left: 1.6rem;
   }
 
   &__name {
