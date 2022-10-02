@@ -5,11 +5,12 @@ class PostsController < ApplicationController
   end
 
   def show
+    @current_user = current_user
     @post = Post.find(params[:id])
   end
 
   def create
-    post = current_user.posts.new(strong_params)
+    post = Post.new(author: current_user, title: params[:user_posts][:title], text: params[:user_posts][:text])
     redirect_to user_path(current_user) if post.save
   end
 
