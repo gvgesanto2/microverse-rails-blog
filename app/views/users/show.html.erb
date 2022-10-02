@@ -11,6 +11,13 @@
     <% else %>
        <%= render "components/posts_preview", user: @user %>
     <% end %>
+
+    <%= form_with url: user_posts_path(@current_user), method: :post, scope: :user_posts do |form| %>
+      <%= form.text_field :title, :required => true, placeholder: "Enter the post title..." %>
+      <%= form.text_field :text, :required => true, placeholder: "Enter the post text..." %>
+
+      <%= form.submit value: 'Save post', class:'p-user-profile__post-btn' %>
+  <% end %>
   </div>
 
 </section>

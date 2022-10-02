@@ -21,6 +21,12 @@
     </span>
   </div>
 
+  <div class="c-post__action"> 
+    <%= form_with url: user_post_likes_path(@current_user, @post), method: :post do |form| %>
+      <%= form.submit value: 'Add like', class:'c-post__action-like' %>
+    <% end %>
+  </div> 
+
   <% if @post.get_most_recent_comments.length > 0 %>
     <div class="c-comments-preview">
       <ul class="c-comments-preview__list">
@@ -52,4 +58,10 @@
     </div>
   <% end %> 
   </article>
+
+  <%= form_with url: user_post_comments_path(@current_user, @post), method: :post, class: "p-post__comment-form" do |form| %>
+    <%= form.text_field :text, :required => true, placeholder: "Enter the comment text..." %>
+
+    <%= form.submit value: 'Save comment', class:'p-post__comment-btn' %>
+  <% end %>
 </section>
