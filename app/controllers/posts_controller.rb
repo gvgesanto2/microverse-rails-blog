@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
-    @posts = Post.by_author(params[:user_id])
+    @posts = @user.get_most_recent_posts
   end
 
   def show
