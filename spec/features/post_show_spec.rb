@@ -9,8 +9,8 @@ RSpec.describe 'Post show page', type: :feature do
     )
     @fake_post = Post.create(
       author: @fake_user,
-      title: "Fake Post",
-      text: "Fake description"
+      title: 'Fake Post',
+      text: 'Fake description'
     )
 
     visit user_post_path(@fake_user, @fake_post)
@@ -40,12 +40,12 @@ RSpec.describe 'Post show page', type: :feature do
     num_comments_created = 3
     comments = []
 
-    num_comments_created.times do |i| 
+    num_comments_created.times do |i|
       comment = Comment.create(
         author: @fake_user,
         post: @fake_post,
         text: "This is the comment example number #{i}"
-      ) 
+      )
       comments.push(comment)
     end
 
@@ -63,12 +63,12 @@ RSpec.describe 'Post show page', type: :feature do
     num_comments_created = 3
     comments = []
 
-    num_comments_created.times do |i| 
+    num_comments_created.times do |i|
       comment = Comment.create(
         author: @fake_user,
         post: @fake_post,
         text: "This is the comment example number #{i}"
-      ) 
+      )
       comments.push(comment)
     end
 

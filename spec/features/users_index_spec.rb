@@ -32,7 +32,7 @@ RSpec.describe 'Users index page', type: :feature do
   it 'should show the number of posts each user has written' do
     num_posts_created = 5
 
-    num_posts_created.times do |i| 
+    num_posts_created.times do |i|
       user_index = i % (@fake_users.length - 1)
 
       Post.create(
@@ -52,9 +52,9 @@ RSpec.describe 'Users index page', type: :feature do
   it "should redirects the current user to the selected user's show page, when he clicks on that specific user" do
     @fake_users.each do |user|
       visit root_path
-      
+
       click_link user.name
-      
+
       expect(current_path).to eq user_path(user)
     end
   end

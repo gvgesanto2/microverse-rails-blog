@@ -27,17 +27,17 @@ RSpec.describe 'User show page', type: :feature do
     expect(page).to have_content(@fake_user.bio)
   end
 
-  it "should show a message when he user has no posts created" do
+  it 'should show a message when he user has no posts created' do
     expect(page).to have_content('No posts created')
   end
 
   it "should show the user's 3 most recent posts" do
-    NUM_POSTS_ALLOWED = 3
-    NUM_POSTS_CREATED = 5
-    NUM_POSTS_HIDDEN = NUM_POSTS_CREATED - NUM_POSTS_ALLOWED
+    num_posts_allowed = 3
+    num_posts_created = 5
+    num_posts_hidden = num_posts_created - num_posts_allowed
     posts = []
 
-    NUM_POSTS_CREATED.times do |i|
+    num_posts_created.times do |i|
       post = Post.create(
         author: @fake_user,
         title: "Post - #{i}",
@@ -48,11 +48,11 @@ RSpec.describe 'User show page', type: :feature do
 
     visit user_path(@fake_user)
 
-    posts[0...NUM_POSTS_HIDDEN].each do |post|
+    posts[0...num_posts_hidden].each do |post|
       expect(page).not_to have_content(post.title)
     end
 
-    posts[NUM_POSTS_HIDDEN..-1].each do |post|
+    posts[num_posts_hidden..].each do |post|
       expect(page).to have_content(post.title)
     end
   end
@@ -60,34 +60,34 @@ RSpec.describe 'User show page', type: :feature do
   it "should show just the first 100 characters of the user posts' bodies" do
     post = Post.create(
       author: @fake_user,
-      title: "Fake Post",
-      text: "Fake description " + ("bla" * 100)
+      title: 'Fake Post',
+      text: "Fake description #{'bla' * 100}"
     )
 
     visit user_path(@fake_user)
-    
+
     expect(page).to have_content("#{post.text[0..100]}...")
   end
 
-  it "should redirects the user to the selected post show page, when he clicks on that specific post" do
+  it 'should redirects the user to the selected post show page, when he clicks on that specific post' do
     post = Post.create(
       author: @fake_user,
-      title: "Fake Post",
-      text: "Fake description "
+      title: 'Fake Post',
+      text: 'Fake description '
     )
 
     visit user_path(@fake_user)
 
     click_link post.title
-      
+
     expect(current_path).to eq user_post_path(@fake_user, post)
   end
 
-  it "should redirects the current user to the selected user's posts index page, when he clicks on the 'see all posts button'" do
-    post = Post.create(
+  it "should redirects the user to the selected posts index page, when he clicks on the 'see all posts button'" do
+    Post.create(
       author: @fake_user,
-      title: "Fake Post",
-      text: "Fake description "
+      title: 'Fake Post',
+      text: 'Fake description '
     )
 
     visit user_path(@fake_user)

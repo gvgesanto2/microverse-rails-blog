@@ -15,7 +15,7 @@ RSpec.describe 'User\'s posts index page', type: :feature do
       post = Post.create(
         author: @fake_user,
         title: "Post - #{i}",
-        text: "Post description test - " + ("#{i}" * 100)
+        text: "Post description test - #{i.to_s * 100}"
       )
       @fake_posts.push(post)
     end
@@ -24,7 +24,7 @@ RSpec.describe 'User\'s posts index page', type: :feature do
   end
 
   it "should show the user's profile picture" do
-   expect(page).to have_css("img[src='#{@fake_user.photo}']")
+    expect(page).to have_css("img[src='#{@fake_user.photo}']")
   end
 
   it "should show the user's username" do
@@ -48,12 +48,12 @@ RSpec.describe 'User\'s posts index page', type: :feature do
   end
 
   it 'should show the 3 most recent comments on a post' do
-    NUM_COMMENTS_ALLOWED = 3
-    NUM_COMMENTS_CREATED = 5
-    NUM_COMMENTS_HIDDEN = NUM_COMMENTS_CREATED - NUM_COMMENTS_ALLOWED
+    num_comments_allowed = 3
+    num_comments_created = 5
+    num_comments_hidden = num_comments_created - num_comments_allowed
     comments = []
 
-    NUM_COMMENTS_CREATED.times do |i|
+    num_comments_created.times do |i|
       comment = Comment.create(
         author: @fake_user,
         post: @fake_posts[0],
@@ -64,11 +64,11 @@ RSpec.describe 'User\'s posts index page', type: :feature do
 
     visit user_posts_path(@fake_user)
 
-    comments[0...NUM_COMMENTS_HIDDEN].each do |comment|
+    comments[0...num_comments_hidden].each do |comment|
       expect(page).not_to have_content(comment.text)
     end
 
-    comments[NUM_COMMENTS_HIDDEN..-1].each do |comment|
+    comments[num_comments_hidden..].each do |comment|
       expect(page).to have_content(comment.text)
     end
   end
@@ -76,14 +76,14 @@ RSpec.describe 'User\'s posts index page', type: :feature do
   it 'should show how many comments a post has' do
     num_comments_created = 5
 
-    num_comments_created.times do |i| 
+    num_comments_created.times do |i|
       post_index = i % (@fake_posts.length - 1)
 
       Comment.create(
         author: @fake_user,
         post: @fake_posts[post_index],
         text: "This is the comment example number #{i}"
-      ) 
+      )
     end
 
     visit user_posts_path(@fake_user)
@@ -102,9 +102,9 @@ RSpec.describe 'User\'s posts index page', type: :feature do
   it 'should redirects the user to the correct post\'s show page, when he clicks on a specific post' do
     @fake_posts.each do |post|
       visit user_posts_path(@fake_user)
-      
+
       click_link post.title
-      
+
       expect(current_path).to eq user_post_path(@fake_user, post)
     end
   end

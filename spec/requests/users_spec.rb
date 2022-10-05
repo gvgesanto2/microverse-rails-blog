@@ -4,7 +4,7 @@ RSpec.describe 'Users', type: :request do
   describe 'GET /users' do
     before(:each) do
       @fake_user = User.create(name: 'Mr.Test', photo: 'testing.png', bio: 'Testing.')
-      
+
       get '/users'
     end
 
@@ -24,7 +24,7 @@ RSpec.describe 'Users', type: :request do
   describe 'GET /users/:user_id' do
     before(:each) do
       @fake_user = User.create(name: 'Mr.Test', photo: 'testing.png', bio: 'Testing.')
-      
+
       get "/users/#{@fake_user.id}"
     end
 

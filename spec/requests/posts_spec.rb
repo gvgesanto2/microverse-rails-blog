@@ -5,8 +5,8 @@ RSpec.describe 'Posts', type: :request do
     before(:each) do
       @fake_user = User.create(name: 'Mr.Test', photo: 'testing.png', bio: 'Testing.')
 
-      @fake_post = Post.create(title: 'testing', author: @fake_user , text: 'testing')
-      
+      @fake_post = Post.create(title: 'testing', author: @fake_user, text: 'testing')
+
       get "/users/#{@fake_user.id}/posts"
     end
 
@@ -29,14 +29,12 @@ RSpec.describe 'Posts', type: :request do
     before(:each) do
       @fake_user = User.create(name: 'Mr.Test', photo: 'testing.png', bio: 'Testing.')
 
-      @fake_post = Post.create(title: 'testing', author: @fake_user , text: 'testing')
+      @fake_post = Post.create(title: 'testing', author: @fake_user, text: 'testing')
 
       get "/users/#{@fake_user.id}/posts/#{@fake_post.id}"
     end
 
     it 'should assign the correct user post to @post' do
-      user_post = Post.find(@fake_post.id)
-
       expect(assigns(:post)).to eq(@fake_post)
     end
 
