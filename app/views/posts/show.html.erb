@@ -34,7 +34,7 @@
           <li>
             <article class="c-comment-item">
               <img 
-                src=<%= image_url('blank_avatar.jpg') %>
+                src=<%= comment.author.photo || image_url('blank_avatar.jpg') %>
                 class="c-comment-item__img" 
                 alt="comment owner photo" 
               />
