@@ -78,7 +78,7 @@ $ rails s
 
 - GitHub: [Hedevedup](https://github.com/hedevedup)
 - Twitter: [devtochi](https://twitter.com/devtochi)
-- LinkedIn: [jesse uzoma](https://linkedin.com/in/jesse uzoma)
+- LinkedIn:[jesseuzoma](https://linkedin.com/in/jesse uzoma)
 
 👤 **Gabriel Santo**
 
