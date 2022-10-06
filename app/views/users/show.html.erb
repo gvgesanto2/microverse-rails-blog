@@ -4,12 +4,12 @@
   <div class="p-user-profile__content">
     <%= render "components/user_bio", bio: @user.bio %>
 
-    <% if @user.get_most_recent_posts.length.zero? %>
+    <% if @posts.length.zero? %>
       <div class="c-card">
         <p>No posts created.</p>
       </div>
     <% else %>
-       <%= render "components/posts_preview", user: @user %>
+       <%= render "components/posts_preview", user: @user, posts: @posts %>
     <% end %>
 
     <%= form_with url: user_posts_path(@current_user), method: :post, scope: :user_posts do |form| %>

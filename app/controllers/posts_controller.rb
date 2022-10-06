@@ -7,6 +7,7 @@ class PostsController < ApplicationController
   def show
     @current_user = current_user
     @post = Post.find(params[:id])
+    @comments = @post.comments.includes(:author).most_recent_ones
   end
 
   def create
