@@ -27,14 +27,14 @@
     <% end %>
   </div> 
 
-  <% if @post.get_most_recent_comments.length > 0 %>
+  <% if @comments.length > 0 %>
     <div class="c-comments-preview">
       <ul class="c-comments-preview__list">
-        <% @post.get_most_recent_comments.each do |comment| %>
+        <% @comments.each do |comment| %>
           <li>
             <article class="c-comment-item">
               <img 
-                src=<%= image_url('blank_avatar.jpg') %>
+                src=<%= comment.author.photo || image_url('blank_avatar.jpg') %>
                 class="c-comment-item__img" 
                 alt="comment owner photo" 
               />

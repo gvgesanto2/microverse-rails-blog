@@ -1,5 +1,5 @@
 <%= link_to user, class: 'c-user-card' do %>
-  <img src=<%= image_url('blank_avatar.jpg') %> class="c-round-img--md" alt="user photo" />
+  <img src=<%= user.photo || image_url('blank_avatar.jpg') %> class="c-round-img--md" alt="user photo" />
   <div class="c-user-card__content">
     <h3 class="c-user-card__name">
       <%= user.name %>

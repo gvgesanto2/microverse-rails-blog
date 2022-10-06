@@ -3,7 +3,7 @@
     Posts Preview
   </h2>
   <ul class="c-posts-preview__list">
-    <% user.get_most_recent_posts(3).each do |post| %>
+    <% posts.each do |post| %>
       <li>
         <%= render "components/post_item", post: post, comments: [], route: user_post_path(user, post) %>
       </li>
