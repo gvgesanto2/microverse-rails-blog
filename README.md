@@ -74,6 +74,12 @@ $ rails s
 
 ## Authors
 
+👤 **Jesse Uzoma**
+
+- GitHub: [Hedevedup](https://github.com/hedevedup)
+- Twitter: [devtochi](https://twitter.com/devtochi)
+- LinkedIn:[jesseuzoma](https://linkedin.com/in/jesse uzoma)
+
 👤 **Gabriel Santo**
 
 - GitHub: [@gvgesanto2](https://github.com/gvgesanto2)
