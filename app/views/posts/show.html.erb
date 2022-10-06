@@ -27,10 +27,10 @@
     <% end %>
   </div> 
 
-  <% if @post.get_most_recent_comments.length > 0 %>
+  <% if @comments.length > 0 %>
     <div class="c-comments-preview">
       <ul class="c-comments-preview__list">
-        <% @post.get_most_recent_comments.each do |comment| %>
+        <% @comments.each do |comment| %>
           <li>
             <article class="c-comment-item">
               <img 

@@ -2,11 +2,13 @@ class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @posts = @user.get_most_recent_posts
+
   end
 
   def show
     @current_user = current_user
     @post = Post.find(params[:id])
+    @comments = @post.comments.includes(:author).most_recent_ones
   end
 
   def create
