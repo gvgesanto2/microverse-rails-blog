@@ -3,21 +3,16 @@
 
   <div class="p-user-profile__content">
     <%= render "components/user_bio", bio: @user.bio %>
+    <%= render "components/posts_preview", user: @user, posts: @posts %>
+    
+    <% if @user == current_user %>
+      <%= form_with url: user_posts_path(current_user), method: :post, scope: :user_posts do |form| %>
+        <%= form.text_field :title, :required => true, placeholder: "Enter the post title..." %>
+        <%= form.text_field :text, :required => true, placeholder: "Enter the post text..." %>
 
-    <% if @posts.length.zero? %>
-      <div class="c-card">
-        <p>No posts created.</p>
-      </div>
-    <% else %>
-       <%= render "components/posts_preview", user: @user, posts: @posts %>
+        <%= form.submit value: 'Save post', class:'p-user-profile__post-btn' %>
+      <% end %>
     <% end %>
-
-    <%= form_with url: user_posts_path(@current_user), method: :post, scope: :user_posts do |form| %>
-      <%= form.text_field :title, :required => true, placeholder: "Enter the post title..." %>
-      <%= form.text_field :text, :required => true, placeholder: "Enter the post text..." %>
-
-      <%= form.submit value: 'Save post', class:'p-user-profile__post-btn' %>
-  <% end %>
   </div>
 
 </section>

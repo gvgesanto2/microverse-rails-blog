@@ -22,7 +22,7 @@
   </div>
 
   <div class="c-post__action"> 
-    <%= form_with url: user_post_likes_path(@current_user, @post), method: :post do |form| %>
+    <%= form_with url: user_post_likes_path(@user, @post), method: :post do |form| %>
       <%= form.submit value: 'Add like', class:'c-post__action-like' %>
     <% end %>
   </div> 
@@ -59,7 +59,7 @@
   <% end %> 
   </article>
 
-  <%= form_with url: user_post_comments_path(@current_user, @post), method: :post, class: "p-post__comment-form" do |form| %>
+  <%= form_with url: user_post_comments_path(@user, @post), method: :post, class: "p-post__comment-form" do |form| %>
     <%= form.text_field :text, :required => true, placeholder: "Enter the comment text..." %>
 
     <%= form.submit value: 'Save comment', class:'p-post__comment-btn' %>

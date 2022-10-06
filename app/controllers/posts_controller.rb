@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: :index
+
   def index
     @user = User.find(params[:user_id])
     @posts = @user.get_most_recent_posts
   end
 
   def show
-    @current_user = current_user
+    @user = User.find(params[:user_id])
     @post = Post.find(params[:id])
     @comments = @post.comments.includes(:author).most_recent_ones
   end
