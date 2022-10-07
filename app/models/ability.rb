@@ -7,9 +7,9 @@ class Ability
     can :read, :all
     return unless user.present?
 
-    can :manage, Post, user_id: user.id
-    can :create, Comment
-    return unless user.moderator?
+    can :manage, Post, author: user
+    can :manage, Comment, author: user
+    return unless user.moderator? || user.admin?
     
     can :update, Comment
     return unless user.admin?

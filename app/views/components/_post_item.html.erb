@@ -7,10 +7,10 @@
   </p>
   <div class="c-post-item__info">
     <span class="c-post-item__likes">
-      <%= post.likes_counter %> likes
+      <%= pluralize(post.likes_counter, "like") %>
     </span>
     <span class="c-post-item__likes">
-      <%= post.comments_counter %> comments
+      <%= pluralize(post.comments_counter, "comment") %>
     </span>
   </div>
 
@@ -35,7 +35,7 @@
                   </p>
                 </div>
                 <span class="c-comment-item__date">
-                  <%= comment.created_at %>
+                  Posted <%= time_ago_in_words(comment.created_at) %> ago
                 </span>
               </div>
             </article>

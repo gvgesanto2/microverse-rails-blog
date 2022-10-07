@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: :index
+  # load_and_authorize_resource
 
   def index
     @user = User.find(params[:user_id])
     @posts = @user.get_most_recent_posts
   end
-
+ 
   def show
     @user = User.find(params[:user_id])
     @post = Post.find(params[:id])

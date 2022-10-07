@@ -17,8 +17,20 @@ class User < ApplicationRecord
     posts.most_recent_ones.limit(num)
   end
 
+  def is?(role)
+    self.role == role.to_s
+  end
+
   def moderator?
-    self.role == :moderator
+    is? :moderator
+  end
+
+  def admin?
+    is? :admin
+  end
+
+  def require_role(*roles)
+    roles.include? self.role.to_sym
   end
 
   private 
