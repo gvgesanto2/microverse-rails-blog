@@ -18,5 +18,3 @@ class Comment < ApplicationRecord
     post.decrement!(:comments_counter) unless post.comments_counter.zero?
   end
 end
-
-

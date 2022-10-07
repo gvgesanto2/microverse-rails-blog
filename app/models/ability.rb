@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Ability
   include CanCan::Ability
 
@@ -10,7 +8,7 @@ class Ability
     can :manage, Post, author: user
     can :manage, Comment, author: user
     return unless user.moderator? || user.admin?
-    
+
     can :update, Comment
     return unless user.admin?
 

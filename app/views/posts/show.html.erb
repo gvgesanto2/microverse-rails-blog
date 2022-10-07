@@ -78,7 +78,7 @@
                     <% end %>
                   <% end %>
                   <% if can? :update, comment %>
-                    <%= button_to user_post_comments_path(@post.author, @post, comment), class: "c-comment-item__btn" do %>
+                    <%= button_to user_post_path(@post.author, @post), class: "c-comment-item__btn" do %>
                       <img 
                         src=<%= image_url('icons/edit.svg') %>
                         class="c-comment-item__icon" 

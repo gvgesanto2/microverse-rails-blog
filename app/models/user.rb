@@ -6,9 +6,9 @@ class User < ApplicationRecord
   has_many :comments, foreign_key: 'author_id', dependent: :destroy
   has_many :likes, foreign_key: 'author_id', dependent: :destroy
 
-  enum role: [:user, :moderator, :admin]
+  enum role: %i[user moderator admin]
 
-  after_initialize :set_default_role, :if => :new_record?
+  after_initialize :set_default_role, if: :new_record?
 
   validates :name, presence: true
   validates :posts_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
@@ -30,10 +30,10 @@ class User < ApplicationRecord
   end
 
   def require_role(*roles)
-    roles.include? self.role.to_sym
+    roles.include? role.to_sym
   end
 
-  private 
+  private
 
   def set_default_role
     self.role ||= :user
