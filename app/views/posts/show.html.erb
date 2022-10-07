@@ -36,6 +36,10 @@
       <%= form_with url: user_post_likes_path(@user, @post), method: :post do |form| %>
         <%= form.submit value: 'Add like', class:'c-post__action-like' %>
       <% end %>
+
+      <% if can? :delete, @post %>
+        <%= button_to "Delete Post", user_post_path(@post.author, @post), method: :delete %>
+      <% end %>
     </div> 
 
     <% if @comments.length > 0 %>

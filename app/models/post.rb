@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :author, class_name: 'User'
-  has_many :comments
-  has_many :likes
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   scope :by_author, ->(author_id) { where(author_id:) }
   scope :most_recent_ones, -> { order('created_at DESC') }

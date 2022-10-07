@@ -1,26 +1,49 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: :index
-  # load_and_authorize_resource
+  before_action :set_user, only: [:index, :show, :destroy]
+  before_action :set_post, only: [:show, :destroy]
+  load_and_authorize_resource
 
   def index
-    @user = User.find(params[:user_id])
     @posts = @user.get_most_recent_posts
   end
  
   def show
-    @user = User.find(params[:user_id])
-    @post = Post.find(params[:id])
     @comments = @post.comments.includes(:author).most_recent_ones
   end
 
   def create
-    post = Post.new(author: current_user, title: params[:user_posts][:title], text: params[:user_posts][:text])
-    redirect_to user_path(current_user) if post.save
+    post = Post.new(post_params)
+    post.author = current_user
+
+    respond_to do |format|
+      if post.save
+        format.html { redirect_to user_path(current_user), notice: 'Post was successfully created.' }
+      else
+        format.html { redirect_to user_path(current_user), alert: 'Error: post could not be created.' }
+      end
+    end
+  end
+
+  def destroy
+    @post.destroy
+
+    respond_to do |format|
+      format.html { redirect_to user_path(@user), notice: 'Post was successfully deleted.' }
+    end
   end
 
   private
 
-  def strong_params
+  def set_user
+    @user = User.find(params[:user_id])
+  end
+  
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def post_params
     params.require(:user_posts).permit(:title, :text)
   end
 end

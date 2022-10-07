@@ -1,5 +1,7 @@
 .c-post {
   display: block;
+  width: 100%;
+  max-width: 120rem;
   padding: 1.2rem 1.6rem;
   transition: all 0.3s ease-out 0s;
 
@@ -55,8 +57,14 @@
   }
 
   &__action {
+    display: flex;
+    align-items: center;
     border-top: 1px solid #ced0d4;
     padding-top: 1.2rem;
     margin-top: 1.2rem;
+
+    & > *:not(:last-child) {
+      margin-right: 1.2rem;
+    }
   }
 }
