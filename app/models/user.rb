@@ -6,10 +6,24 @@ class User < ApplicationRecord
   has_many :comments, foreign_key: 'author_id'
   has_many :likes, foreign_key: 'author_id'
 
+  enum role: [:user, :moderator, :admin]
+
+  after_initialize :set_default_role, :if => :new_record?
+
   validates :name, presence: true
   validates :posts_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def get_most_recent_posts(num = nil)
     posts.most_recent_ones.limit(num)
+  end
+
+  def moderator?
+    self.role == :moderator
+  end
+
+  private 
+
+  def set_default_role
+    self.role ||= :user
   end
 end
