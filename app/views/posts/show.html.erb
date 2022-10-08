@@ -1,62 +1,98 @@
 <section class="p-post">
   <article class="c-post c-card">
     <header class="c-post__header">
-      <h3 class="c-post__title">
-        <%= @post.title %>
-      </h3>
-      <span class="c-post__author">
-        by <%= @post.author.name %>
-      </span>
+      <img 
+        src=<%= @post.author.photo || image_url('blank_avatar.jpg') %>
+        class="c-post__author-img" 
+        alt="post author photo" 
+      />
+      <div class="c-post__author-info">
+        <span class="c-post__author-name">
+          <%= @post.author.name %>
+        </span>
+        <span class="c-post__date">
+          posted <%= time_ago_in_words(@post.created_at) %> ago
+        </span>
+      </div>
     </header>
+
+    <h2 class="c-post__title">
+      <%= @post.title %>
+    </h2>
       
-  <p class="c-post__text">
-    <%= @post.text %>
-  </p>
-  <div class="c-post__info">
-    <span class="c-post__likes">
-      <%= @post.likes_counter %> likes
-    </span>
-    <span class="c-post__likes">
-      <%= @post.comments_counter %> comments
-    </span>
-  </div>
-
-  <div class="c-post__action"> 
-    <%= form_with url: user_post_likes_path(@user, @post), method: :post do |form| %>
-      <%= form.submit value: 'Add like', class:'c-post__action-like' %>
-    <% end %>
-  </div> 
-
-  <% if @comments.length > 0 %>
-    <div class="c-comments-preview">
-      <ul class="c-comments-preview__list">
-        <% @comments.each do |comment| %>
-          <li>
-            <article class="c-comment-item">
-              <img 
-                src=<%= comment.author.photo || image_url('blank_avatar.jpg') %>
-                class="c-comment-item__img" 
-                alt="comment owner photo" 
-              />
-              <div class="c-comment-item__content">
-                <div class="c-comment-item__box">
-                  <h3 class="c-comment-item__author">
-                    <%= comment.author.name %>
-                  </h3>
-                  <p class="c-comment-item__text">
-                    <%= comment.text %>
-                  </p>
-                </div>
-                <span class="c-comment-item__date">
-                  <%= comment.created_at %>
-                </span>
-              </div>
-            </article>
-          </li>
-        <% end %>
-      </ul>
+    <p class="c-post__text">
+      <%= @post.text %>
+    </p>
+    <div class="c-post__info">
+      <span class="c-post__likes">
+        <%= @post.likes_counter %> likes
+      </span>
+      <span class="c-post__likes">
+        <%= @post.comments_counter %> comments
+      </span>
     </div>
-  <% end %> 
+
+    <div class="c-post__action"> 
+      <%= form_with url: user_post_likes_path(@user, @post), method: :post do |form| %>
+        <%= form.submit value: 'Add like', class:'c-post__action-like' %>
+      <% end %>
+
+      <% if can? :delete, @post %>
+        <%= button_to "Delete Post", user_post_path(@post.author, @post), method: :delete %>
+      <% end %>
+    </div> 
+
+    <% if @comments.length > 0 %>
+      <div class="c-comments-preview">
+        <ul class="c-comments-preview__list">
+          <% @comments.each do |comment| %>
+            <li>
+              <article class="c-comment-item">
+                <img 
+                  src=<%= comment.author.photo || image_url('blank_avatar.jpg') %>
+                  class="c-comment-item__img" 
+                  alt="comment owner photo" 
+                />
+                <div class="c-comment-item__content">
+                  <div class="c-comment-item__box">
+                    <h3 class="c-comment-item__author">
+                      <%= comment.author.name %>
+                    </h3>
+                    <p class="c-comment-item__text">
+                      <%= comment.text %>
+                    </p>
+                  </div>
+                  <span class="c-comment-item__date">
+                    Posted <%= time_ago_in_words(comment.created_at) %> ago
+                  </span>
+                </div>
+
+                <div class="c-comment-item__action">
+                  <% if can? :delete, comment %>
+                    <%= button_to user_post_comment_path(@post.author, @post, comment), method: :delete, class: "c-comment-item__btn" do %>
+                      <img 
+                        src=<%= image_url('icons/trash.svg') %>
+                        class="c-comment-item__icon" 
+                        alt="delete button" 
+                      />
+                    <% end %>
+                  <% end %>
+                  <% if can? :update, comment %>
+                    <%= button_to user_post_path(@post.author, @post), class: "c-comment-item__btn" do %>
+                      <img 
+                        src=<%= image_url('icons/edit.svg') %>
+                        class="c-comment-item__icon" 
+                        alt="delete button" 
+                      />
+                    <% end %>
+                  <% end %>
+                </div>
+              </article>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %> 
   </article>
 
   <%= form_with url: user_post_comments_path(@user, @post), method: :post, class: "p-post__comment-form" do |form| %>
